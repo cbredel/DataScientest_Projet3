@@ -1,6 +1,13 @@
 # DataScientest_Projet3
 Projet n°3 - Base de données
 
+## Choix de la base de données
+
+En terme de données, j'ai opté pour les données concernant les vins. J'ai porté mon dévolu sur cette données car elle présentait un potentiel pour produire une base de données relationnelle "classique
+
+En terme de données de données, j'ai opté pourPostgreSQL (le script est  cependant potentiellement compa).
+
+
 
 ## L'intégration des données et la modélisation de la base
 
@@ -13,7 +20,11 @@ Ensuite, les commandes SQL permettent de construire une base de données relatio
 L'API a été développé avec FastAPI. 
 Le fichier main.py contient le script. 
 
-Pour l'execute : 
+Dans le script, les paramètres de connexion, nom d'utilisateur et mot de passe sont à adapter. 
+
+Je n'ai intégrer d'authentification à l'API
+
+Pour l'executer : 
 
 uvicorn main:app --reload
 
