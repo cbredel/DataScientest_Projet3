@@ -122,22 +122,22 @@ async def list_provinces():
     myreq="select * from public.province"
     return query_to_json(myreq)
 
-@app.get("/regions",tags=['Variables'],, name='Give region list')
+@app.get("/regions",tags=['Variables'], name='Give region list')
 async def list_regions():
     myreq="select * from public.region"
     return query_to_json(myreq)
 
-@app.get("/tasters",tags=['Variables'], name='Give taster list'
+@app.get("/tasters",tags=['Variables'], name='Give taster list')
 async def list_tasters():
     myreq="select * from public.taster"
     return query_to_json(myreq)
 
-@app.get("/varieties",tags=['Variables'],, name='Give varieties list')
+@app.get("/varieties",tags=['Variables'], name='Give varieties list')
 async def list_varieties():
     myreq="select * from public.variety"
     return query_to_json(myreq)
 
-@app.get("/wines",tags=['Wines'],, name='Give Wine list')
+@app.get("/wines",tags=['Wines'], name='Give Wine list')
 async def list_wines():
     myreq="select * from public.wine"
     return query_to_json(myreq)
@@ -149,7 +149,7 @@ async def get_wine(wine_id):
     return query_to_json(myreq)
 
 
-@app.put("/country/{country_name}",tags=['Variables'],, name='Add a country')
+@app.put("/country/{country_name}",tags=['Variables'], name='Add a country')
 async def create_country(country_name):
 	print(country_name)
 	try:
@@ -166,7 +166,7 @@ async def create_country(country_name):
 			connection.close()
 	return templates.TemplateResponse("add_wine.html", {"request": request})
 
-@app.post("/wine/add",tags=['Wines'],, name='Add Wine')	
+@app.post("/wine/add",tags=['Wines'], name='Add Wine')	
 async def  win_add(wine: Wine):
 	print("hello pour l'ajout2")
 	print(wine)
@@ -192,20 +192,20 @@ async def  win_add(wine: Wine):
 			connection.close()
 	return {"message": "Wine recorded"}
 
-@app.post("/wine/search/bytitle",tags=['Wines'],, name='Search wine by name')
+@app.post("/wine/search/bytitle",tags=['Wines'],name='Search wine by name')
 async def get_wine(q:QueryString):
     myreq="select * from public.wine where title ilike '%"+q.mystr+"%'"
     print(myreq)
     return query_to_json(myreq)
 
 
-@app.post("/wine/search/bycountryname",tags=['Wines'], , name='Search wine by name of the country')
+@app.post("/wine/search/bycountryname",tags=['Wines'],  name='Search wine by name of the country')
 async def get_wine(q:QueryString):
     myreq="select * from public.wine where country_id =(select country_id from public.country where country ilike '"+q.mystr+"')"
     print(myreq)
     return query_to_json(myreq)	
 
-@app.post("/wine/search/bycountryid",tags=['Wines'], , name='Search wine by ID of the country')
+@app.post("/wine/search/bycountryid",tags=['Wines'], name='Search wine by ID of the country')
 async def get_wine(q:QueryId):
     myreq="select * from public.wine where country_id="+str(q.myid)+""
     print(myreq)
